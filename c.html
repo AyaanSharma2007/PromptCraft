@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER_SYNDICATE :: [RECRUITMENT_PORTAL]</title>
+    <!-- 
+      ..:: V01D-NET [SECURE_CHANNEL] ::..
+      USER: [UNKNOWN]
+      LOCATION: [NEOCITY_GRID_07]
+      STATUS: [AWAITING_GAUNTLET_ATTEMPT]
+
+      You passed the filter. Now, the real gauntlet. 
+      11 layers of ICE. Show me what you're made of.
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff00ff;
+            --neon-yellow: #faff00;
+            --neon-red: #ff003c;
+            --neon-green: #00ff6a;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #030104;
+            color: var(--neon-cyan);
+            overflow-x: hidden;
+        }
+
+        /* Scanlines Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.4) 0px,
+                rgba(0, 0, 0, 0.4) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        
+        /* Vignette */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 200px 50px rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            pointer-events: none;
+        }
+
+        /* Neon Glow Effects */
+        .neon-text-cyan {
+            text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+        }
+        .neon-text-pink {
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        }
+        .neon-text-yellow {
+            color: var(--neon-yellow);
+            text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow);
+        }
+        .neon-text-red {
+            color: var(--neon-red);
+            text-shadow: 0 0 5px var(--neon-red), 0 0 10px var(--neon-red);
+        }
+        .neon-text-green {
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+        }
+
+        .neon-border {
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan), 0 0 15px var(--neon-cyan) inset;
+        }
+
+        /* Glitch Animation */
+        .glitch {
+            animation: glitch 1.5s infinite linear;
+        }
+        @keyframes glitch {
+            0%, 100% {
+                transform: skew(0deg);
+                text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan),
+                             2px 2px 1px var(--neon-pink), -2px -2px 1px var(--neon-cyan);
+            }
+            33% {
+                transform: skew(-2deg);
+                text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan),
+                             -2px -2px 1px var(--neon-pink), 4px 4px 1px var(--neon-cyan);
+            }
+            66% {
+                transform: skew(2deg);
+                text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan),
+                             2px 2px 1px var(--neon-pink), -4px -4px 1px var(--neon-cyan);
+            }
+        }
+        
+        /* Button Flicker */
+        .flicker-button {
+            transition: all 0.2s ease;
+            border: 2px solid var(--neon-pink);
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+            box-shadow: 0 0 5px var(--neon-pink) inset, 0 0 10px var(--neon-pink);
+            animation: flicker 3s infinite alternate;
+        }
+        .flicker-button:hover {
+            background-color: var(--neon-pink);
+            color: #030104;
+            text-shadow: none;
+            animation: none;
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink);
+        }
+        .flicker-button:disabled {
+            border-color: #555;
+            color: #555;
+            text-shadow: none;
+            box-shadow: none;
+            animation: none;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 5px var(--neon-pink) inset, 0 0 10px var(--neon-pink);
+            }
+            20%, 24%, 55% {
+                opacity: 0.7;
+                box-shadow: 0 0 5px var(--neon-pink) inset, 0 0 5px var(--neon-pink);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030104; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan); }
+        ::-webkit-scrollbar-thumb:hover { background: #fff; }
+
+        /* Hide all pages by default */
+        .page {
+            display: none;
+        }
+
+        /* 404 / Terminal Page Styles */
+        #terminal-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.5rem;
+            width: 50%;
+        }
+        #terminal-input::placeholder {
+            color: rgba(0, 255, 255, 0.3);
+        }
+        .blink-cursor {
+            animation: blink 1s step-end infinite;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+
+        /* Loyalty/Role Question Buttons */
+        .choice-button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(3, 1, 4, 0.5);
+        }
+        .choice-button:hover {
+            background-color: var(--neon-pink);
+            color: #030104;
+            text-shadow: none;
+            animation: none;
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink);
+        }
+        .choice-button .choice-key {
+            font-weight: bold;
+            color: var(--neon-yellow);
+            margin-right: 1rem;
+        }
+        /* Psyche-Core Question Styling */
+        .psyche-question {
+            display: none;
+        }
+        .psyche-question.active {
+            display: block;
+        }
+
+        /* Timer Bar */
+        .timer-bar-container {
+            width: 100%;
+            height: 10px;
+            background: #222;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .timer-bar {
+            width: 100%;
+            height: 100%;
+            background: var(--neon-red);
+            transition: width 0.1s linear;
+        }
+
+        /* Reaction Game Styles */
+        #reaction-bar-container {
+            width: 100%;
+            height: 40px;
+            background: #111;
+            border: 2px solid var(--neon-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+        #reaction-target-zone {
+            position: absolute;
+            width: 10%; /* 10% of the bar */
+            height: 100%;
+            background: rgba(0, 255, 106, 0.3);
+            border-left: 2px solid var(--neon-green);
+            border-right: 2px solid var(--neon-green);
+            left: 45%; /* Centered */
+            z-index: 1;
+        }
+        #reaction-marker {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
+            z-index: 2;
+        }
+
+        /* Memory Game Styles */
+        .memory-symbol {
+            font-size: 2.5rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--neon-cyan);
+            margin: 5px;
+            color: var(--neon-cyan);
+            transition: all 0.2s;
+        }
+        .memory-symbol.active {
+            background: var(--neon-cyan);
+            color: #030104;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+        .memory-input-btn {
+            background: transparent;
+            border: 2px solid var(--neon-pink);
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+        .memory-input-btn:hover {
+            background: var(--neon-pink);
+            color: #030104;
+            text-shadow: none;
+        }
+
+        /* Stage 3: Triangulation Styles */
+        #triangulation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-w-xs mx-auto;
+        }
+        .triangulation-relay {
+            width: 100%;
+            height: 80px;
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-size: 2rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+            transition: all 0.2s;
+        }
+        .triangulation-relay:hover {
+            background: var(--neon-cyan);
+            color: #030104;
+            text-shadow: none;
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+        .triangulation-relay:disabled {
+            border-color: #555;
+            color: #555;
+            text-shadow: none;
+            box-shadow: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+
+        /* Evasion Game Styles */
+        #evasion-grid {
+            width: 100%;
+            height: 250px;
+            background: #08050a;
+            border: 2px solid var(--neon-cyan);
+            cursor: crosshair;
+            position: relative;
+            overflow: hidden;
+        }
+        #evasion-grid::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(var(--neon-cyan) 0 1px, transparent 1px 20px),
+                        repeating-linear-gradient(90deg, var(--neon-cyan) 0 1px, transparent 1px 20px);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* Aim Tester Styles */
+        #aim-grid {
+            width: 100%;
+            height: 300px;
+            border: 2px solid var(--neon-pink);
+            margin: auto;
+            position: relative;
+            background: #000;
+            cursor: crosshair;
+            overflow: hidden;
+        }
+        #aim-target {
+            width: 40px;
+            height: 40px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 15px var(--neon-green), 0 0 20px var(--neon-green);
+            transition: all 0.1s linear;
+        }
+        #aim-target:before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 20px; height: 20px;
+            background: #000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Typing Game Styles */
+        #typing-target-string {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            word-break: break-all;
+            padding: 1rem;
+            background: #111;
+            border: 1px dashed var(--neon-green);
+        }
+        #typing-input {
+            background: transparent;
+            border: 2px solid var(--neon-yellow);
+            color: var(--neon-yellow);
+            padding: 0.5rem 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+        }
+
+        /* De-obfuscation Styles */
+        #deobfuscation-target {
+            font-size: 1.25rem;
+            color: var(--neon-yellow);
+            word-break: break-all;
+            padding: 1rem;
+            background: #111;
+            border: 1px dashed var(--neon-yellow);
+            user-select: none;
+        }
+        #deobfuscation-input {
+            background: transparent;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 0.5rem 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+        }
+
+        /* Brute-Force Logic Styles */
+        #bruteforce-input-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .bruteforce-input {
+            width: 60px;
+            height: 80px;
+            font-size: 3rem;
+            text-align: center;
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            -moz-appearance: textfield; /* Firefox */
+        }
+        .bruteforce-input::-webkit-outer-spin-button,
+        .bruteforce-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        #bruteforce-history {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            padding: 1rem;
+            background: #000;
+            font-size: 1.25rem;
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed #222;
+        }
+        .history-guess {
+            letter-spacing: 0.5em;
+        }
+        .history-feedback span {
+            margin: 0 0.25rem;
+        }
+        .feedback-correct { color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); }
+        .feedback-partial { color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow); }
+        .feedback-miss { color: var(--neon-red); text-shadow: 0 0 5px var(--neon-red); }
+
+        /* Puzzle Game Styles */
+        #puzzle-text-container {
+            font-family: 'Share Tech Mono', monospace;
+            background: #08050a;
+            border: 2px solid var(--neon-cyan);
+            padding: 1.5rem;
+            height: 300px;
+            overflow-y: scroll;
+            color: var(--neon-green);
+            user-select: none;
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.2;
+        }
+        #puzzle-input {
+            background: transparent;
+            border: 2px solid var(--neon-yellow);
+            color: var(--neon-yellow);
+            padding: 0.5rem 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+        }
+        #puzzle-input::placeholder {
+            color: rgba(250, 255, 0, 0.4);
+        }
+
+        /* New Glitch for Text */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+            animation: glitch-skew 0.8s infinite linear alternate;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-glitch);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #030104; /* Match body bg */
+            overflow: hidden;
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-pink);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-cyan), 2px 2px var(--neon-pink);
+            clip: rect(85px, 450px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.2deg); }
+            20% { clip: rect(10px, 9999px, 90px, 0); transform: skew(0.5deg); }
+            40% { clip: rect(50px, 9999px, 60px, 0); transform: skew(0.1deg); }
+            60% { clip: rect(70px, 9999px, 80px, 0); transform: skew(0.8deg); }
+            80% { clip: rect(30px, 9999px, 45px, 0); transform: skew(0.3deg); }
+            100% { clip: rect(50px, 9999px, 75px, 0); transform: skew(0.6deg); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(20px, 9999px, 80px, 0); transform: skew(0.1deg); }
+            20% { clip: rect(40px, 9999px, 60px, 0); transform: skew(0.9deg); }
+            40% { clip: rect(10px, 9999px, 25px, 0); transform: skew(0.4deg); }
+            60% { clip: rect(80px, 9999px, 99px, 0); transform: skew(0.2deg); }
+            80% { clip: rect(50px, 9999px, 70px, 0); transform: skew(0.7deg); }
+            100% { clip: rect(30px, 9999px, 50px, 0); transform: skew(0.1deg); }
+        }
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-1deg); }
+            60% { transform: skew(1deg); }
+            80% { transform: skew(0deg); }
+            100% { transform: skew(0.5deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div id="main-container" class="w-full max-w-4xl mx-auto">
+
+        <!-- ===== NEW 404 / TERMINAL PAGE ===== -->
+        <div id="error-404" class="page">
+            <div class="text-center space-y-8 neon-border p-8 md:p-12 rounded-lg">
+                <h1 class="text-7xl font-bold neon-text-red glitch">[ 404 ]</h1>
+                <p class="text-3xl text-gray-300">
+                    // RESOURCE_NOT_FOUND
+                </p>
+                <p class="text-xl text-gray-500 max-w-2xl mx-auto">
+                    The node you are trying to reach has been fragmented or does not exist.
+                    Signal trace lost. Returning to console...
+                </p>
+                <div class="mt-8 text-left max-w-lg mx-auto">
+                    <p id="terminal-message" class="text-lg neon-text-red h-6 mb-2"></p>
+                    <div class="flex items-center">
+                        <span class="text-2xl neon-text-cyan mr-2">></span>
+                        <input type="text" id="terminal-input" placeholder="Awaiting command..." autocomplete="off" spellcheck="false">
+                        <span class="blink-cursor">_</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== BOOT SEQUENCE ===== -->
+        <div id="boot-sequence" class="page text-lg">
+            <p id="boot-log" class="whitespace-pre-wrap"></p>
+            <span class="animate-ping">_</span>
+        </div>
+
+        <!-- ===== LANDING PAGE ===== -->
+        <div id="landing" class="page">
+            <div class="text-center space-y-8 neon-border p-8 md:p-12 rounded-lg">
+                <pre class="neon-text-cyan text-lg md:text-xl">
+    __     __    ___   ___  ___  
+    \ \   / /   / _ \  | \ | |  
+     \ \_/ /   | | | | |  \| |  
+      \   /    | | | | | . ` |  
+       | |     | |_| | | |\  |  
+       |_|      \___/  |_| \_|  
+                                
+   C Y B E R   ::   S Y N D I C A T E
+                </pre>
+                <h1 class="text-3xl md:text-5xl font-bold glitch">
+                    <span class="glitch-text" data-glitch="Cyebr">Cyber</span> <span class="glitch-text" data-glitch="Cyndicate">Syndicate</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-300">
+                    "The V01D was a test. We are the result. The Syndicate owns the static, the code, and the chrome.
+                    NeoCity is our board... and we're looking for new players.
+                    <br>
+                    Prove you're not just another glitch in the system."
+                </p>
+                <button id="start-btn" class="flicker-button px-10 py-3 text-2xl font-bold uppercase rounded-sm">
+                    [Initiate Breach]
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== STAGE 1: REACTION ===== -->
+        <div id="breach-stage-1" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_1/11 :: [REFLEX_CALIBRATION]</h2>
+                <p class="text-xl text-gray-200">The first layer of ICE is simple. A timing spike. Hit the [BREACH]
+                    button when the marker is in the green target zone.</p>
+                <p id="reaction-message" class="text-lg neon-text-red h-6"></p>
+
+                <div id="reaction-bar-container">
+                    <div id="reaction-target-zone"></div>
+                    <div id="reaction-marker" style="left: 0%;"></div>
+                </div>
+
+                <button id="reaction-btn"
+                    class="flicker-button px-10 py-3 text-2xl font-bold uppercase rounded-sm mt-4">
+                    [BREACH]
+                </button>
+            </div>
+        </div>
+        
+        <!-- ===== STAGE 2: MEMORY ===== -->
+        <div id="breach-stage-2" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_2/11 :: [FIREWALL_DECRYPTION]</h2>
+                <p class="text-xl text-gray-200">The next layer is a symbol-sequence firewall. Watch. Remember.
+                    Replicate the 5-symbol pattern.</p>
+                
+                <div id="memory-sequence-display" class="flex justify-center my-4 h-24">
+                    <!-- Symbols will flash here -->
+                </div>
+
+                <p id="memory-message" class="text-lg neon-text-red h-6"></p>
+
+                <div id="memory-input-area" class="flex flex-wrap justify-center space-x-4 hidden">
+                    <!-- Input buttons will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== STAGE 3: TRIANGULATION ===== -->
+        <div id="breach-stage-3" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_3/11 :: [SIGNAL_TRIANGULATION]</h2>
+                <p class="text-xl text-gray-200">The signal is bouncing. We're feeding you proximity data. Find the correct relay. You have 3 attempts.</p>
+
+                <div id="triangulation-grid">
+                    <!-- JS will populate 9 relays here -->
+                </div>
+                
+                <p id="triangulation-readout" class="text-3xl neon-text-cyan h-10">[SIGNAL_STRENGTH: ???]</p>
+                <p id="triangulation-message" class="text-lg neon-text-red h-6"></p>
+            </div>
+        </div>
+
+        <!-- ===== STAGE 4: EVASION ===== -->
+        <div id="breach-stage-4" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_4/11 :: [GHOST_EVASION]</h2>
+                <p class="text-xl text-gray-200">The network is patrolled. Find the hidden access node in the grid. We'll feed you proximity data. You have 15 seconds.</p>
+
+                <div id="evasion-grid" class="relative">
+                    <!-- JS will handle interaction -->
+                </div>
+                
+                <div class="timer-bar-container">
+                    <div id="evasion-timer-bar" class="timer-bar"></div>
+                </div>
+
+                <p id="proximity-display" class="text-3xl neon-text-cyan h-10">[C O L D]</p>
+                <p id="evasion-message" class="text-lg neon-text-red h-6"></p>
+            </div>
+        </div>
+        
+        <!-- ===== NEW STAGE 5: AIM TESTER ===== -->
+        <div id="breach-stage-5" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_5/11 :: [AIM_N_HACK]</h2>
+                <p class="text-xl text-gray-200">A high-speed data-port is jumping. Hit the target 10 times to extract the data. Misses cost time. You have 15 seconds.</p>
+
+                <div id="aim-grid">
+                    <div id="aim-target"></div>
+                </div>
+
+                <div class="timer-bar-container">
+                    <div id="aim-timer-bar" class="timer-bar"></div>
+                </div>
+
+                <p class="text-2xl neon-text-green">HITS: <span id="aim-score">0</span> / 10</p>
+                <p id="aim-message" class="text-lg neon-text-red h-6"></p>
+            </div>
+        </div>
+
+
+        <!-- ===== STAGE 6: TYPING (Old Stage 5) ===== -->
+        <div id="breach-stage-6" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_6/11 :: [DATA-STREAM_INJECTION]</h2>
+                <p class="text-xl text-gray-200">The kernel is open. A watchdog is scanning. Inject the exploit code *exactly* before the timer expires. Hit [ENTER] to submit.</p>
+
+                <div id="typing-target-string" class="text-left">
+                    <!-- JS will populate this -->
+                </div>
+
+                <div class="timer-bar-container">
+                    <div id="typing-timer-bar" class="timer-bar"></div>
+                </div>
+
+                <input type="text" id="typing-input" class="w-full" placeholder="TYPE_EXPLOIT_HERE..." autocomplete="off" spellcheck="false">
+                <p id="typing-message" class="text-lg neon-text-red h-6"></p>
+            </div>
+        </div>
+        
+        <!-- ===== STAGE 7: DE-OBFUSCATION (Old Stage 6) ===== -->
+        <div id="breach-stage-7" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_7/11 :: [CODE_DEOBFUSCATION]</h2>
+                <p class="text-xl text-gray-200">This data is corrupted. The exploit is unreadable. De-glitch the code *exactly* as intended. Hit [ENTER] to submit.</p>
+
+                <div id="deobfuscation-target" class="text-left">
+                    <!-- JS will populate this -->
+                </div>
+
+                <div class="timer-bar-container">
+                    <div id="deobfuscation-timer-bar" class="timer-bar"></div>
+                </div>
+
+                <input type="text" id="deobfuscation-input" class="w-full" placeholder="TYPE_CLEAN_CODE_HERE..." autocomplete="off" spellcheck="false">
+                <p id="deobfuscation-message" class="text-lg neon-text-red h-6"></p>
+            </div>
+        </div>
+
+        <!-- ===== NEW STAGE 8: BRUTE-FORCE LOGIC ===== -->
+        <div id="breach-stage-8" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_8/11 :: [BRUTEFORCE_LOGIC]</h2>
+                <p class="text-xl text-gray-200">The logic-gate requires a 3-digit key. No digit is repeated. You have 5 attempts.</p>
+                <ul class="text-left max-w-md mx-auto list-disc list-inside">
+                    <li><span class="neon-text-green">[CORRECT]</span>: Right digit, right position.</li>
+                    <li><span class="neon-text-yellow">[PARTIAL]</span>: Right digit, wrong position.</li>
+                    <li><span class="neon-text-red">[MISS]</span>: Wrong digit.</li>
+                </ul>
+
+                <div id="bruteforce-input-container">
+                    <input type="number" class="bruteforce-input" id="bruteforce-input-0" maxlength="1" oninput="this.value=this.value.slice(0,1); if(this.value) document.getElementById('bruteforce-input-1').focus();">
+                    <input type="number" class="bruteforce-input" id="bruteforce-input-1" maxlength="1" oninput="this.value=this.value.slice(0,1); if(this.value) document.getElementById('bruteforce-input-2').focus();">
+                    <input type="number" class="bruteforce-input" id="bruteforce-input-2" maxlength="1" oninput="this.value=this.value.slice(0,1);">
+                </div>
+                
+                <button id="bruteforce-submit-btn" class="flicker-button px-8 py-2 text-lg font-bold uppercase rounded-sm">
+                    [CHECK_KEY]
+                </button>
+                <p id="bruteforce-message" class="text-lg neon-text-red h-6"></p>
+                
+                <div id="bruteforce-history" class="text-left">
+                    <!-- JS will populate this -->
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ===== STAGE 9: PUZZLE (Old Stage 7) ===== -->
+        <div id="breach-stage-9" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6 text-center">
+                <h2 class="neon-text-yellow text-xl">>> BREACH_STAGE_9/11 :: [ROOT_ACCESS]</h2>
+                <p class="text-xl text-gray-200">One last filter. The core data is corrupted. Find the access key
+                    hidden in the static and enter it below.</p>
+                
+                <div id="puzzle-text-container">
+                    <!-- Glitched text will be generated here -->
+                </div>
+
+                <p id="puzzle-message" class="text-lg neon-text-red h-6"></p>
+                
+                <input type="text" id="puzzle-input" class="w-full md:w-1/2 mx-auto" placeholder="ENTER ACCESS KEY...">
+                <button id="puzzle-submit-btn"
+                    class="flicker-button px-10 py-3 text-2xl font-bold uppercase rounded-sm mt-4">
+                    [EXECUTE]
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== STAGE 10: PSYCHE-CORE (Old 8 & 9) ===== -->
+        <div id="breach-stage-10" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6">
+                
+                <h2 id="psyche-stage-title" class="neon-text-yellow text-xl">>> PSYCHE_EVAL_1/4 :: [MORALITY_MATRIX]</h2>
+
+                <!-- Question 1: Loyalty 1 -->
+                <div id="psyche-q1" class="psyche-question active">
+                    <p class="text-xl text-gray-200 mb-6">A rival fixer from Arasaka slides you a data-slate. It's a one-time, untraceable offer: 1,000,000 credits for the location of your Syndicate safehouse.
+                    <br><br>What is your move?</p>
+                    <button class="flicker-button choice-button" data-choice="q1_betray">
+                        <span class="choice-key">[A]</span>
+                        Take the credits. Everyone has a price, and this one is mine.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q1_trap">
+                        <span class="choice-key">[B]</span>
+                        Report the fixer to the Syndicate. Feed them false data and lead the corpo into our ambush.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q1_ignore">
+                        <span class="choice-key">[C]</span>
+                        Say nothing. The offer is noise. The fixer is irrelevant. My work continues.
+                    </button>
+                </div>
+
+                <!-- Question 2: Loyalty 2 -->
+                <div id="psyche-q2" class="psyche-question">
+                    <p class="text-xl text-gray-200 mb-6">A crew member made a mistake. A big one. It's costing the Syndicate money and reputation. The boss is looking for who to blame. You know the truth.
+                    <br><br>What do you do?</p>
+                    <button class="flicker-button choice-button" data-choice="q2_take_fall">
+                        <span class="choice-key">[A]</span> Take the fall. The crew is family. I can handle the heat.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q2_misdirect">
+                        <span class="choice-key">[B]</span> Blame a rival. Misdirect the heat, save my crewmate, and weaken an enemy.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q2_truth_solution">
+                        <span class="choice-key">[C]</span> Tell the boss the truth, but offer a solution to fix the damage.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q2_give_up">
+                        <span class="choice-key">[D]</span> Give up my crewmate. The Syndicate's strength is built on accountability.
+                    </button>
+                </div>
+
+                <!-- Question 3: Role 1 -->
+                <div id="psyche-q3" class="psyche-question">
+                    <p class="text-xl text-gray-200 mb-6">The job is a success... almost. The alarm is blaring. A Militech C-SWAT team is breaching the lobby. You have 10 seconds.
+                    <br><br>What is your final move?</p>
+                    <button class="flicker-button choice-button" data-choice="q3_ghost">
+                        <span class="choice-key">[A]</span> I'm already gone. I slipped out the maintenance vent while you were still fighting.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q3_netrunner">
+                        <span class="choice-key">[B]</span> Find the nearest terminal. I'll fry their optics, lock the elevators, and crash the network.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q3_enforcer">
+                        <span class="choice-key">[C]</span> Hold the line. Get the rest of the crew out. I'll show this C-SWAT team what real chrome looks like.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q3_fixer">
+                        <span class="choice-key">[D]</span> I'm already at the rendezvous. I have the paydata and the escape vehicles hot. What took you so long?
+                    </button>
+                </div>
+                
+                <!-- Question 4: Role 2 -->
+                <div id="psyche-q4" class="psyche-question">
+                    <p class="text-xl text-gray-200 mb-6">A 'simple' data-grab at a corp clinic. You're in, but you see a file: a 'cure' for a cyber-plague that's ravaging the slums... but it's not your objective.
+                    <br><br>What do you take?</p>
+                    <button class="flicker-button choice-button" data-choice="q4_fixer">
+                        <span class="choice-key">[A]</span> Grab the objective *and* the cure. The data is leverage, the cure is power. I'll find a buyer for both.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q4_betray_mercenary">
+                        <span class="choice-key">[B]</span> Forget the objective, take the cure, and leak it to the street. This is bigger than the job.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q4_ghost">
+                        <span class="choice-key">[C]</span> Stick to the plan. Grab the objective and get out. The clinic, the plague... not my problem.
+                    </button>
+                    <button class="flicker-button choice-button" data-choice="q4_netrunner">
+                        <span class="choice-key">[D]</span> The objective *is* the cure. I'll crack the database, copy both, and set their system on fire on the way out.
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== STAGE 11: FINAL PSYCHE (NEW) ===== -->
+        <div id="breach-stage-11" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg space-y-6">
+                
+                <h2 class="neon-text-yellow text-xl">>> PSYCHE_EVAL_FINAL :: [MOTIVATION_ANALYSIS]</h2>
+                
+                <p class="text-xl text-gray-200 mb-6">The job is over. The credits are wired. How do you spend your downtime?</p>
+
+                <button class="flicker-button choice-button" data-choice="q5_netrunner">
+                    <span class="choice-key">[A]</span> In the 'net, diving deeper than ever, looking for the next piece of forbidden code.
+                </button>
+                <button class="flicker-button choice-button" data-choice="q5_enforcer">
+                    <span class="choice-key">[B]</span> At the range, chroming a new arm, field-stripping my rifle. A weapon must be sharp.
+                </button>
+                <button class="flicker-button choice-button" data-choice="q5_fixer">
+                    <span class="choice-key">[C]</span> In the shadows of a bar, listening, making connections, finding the next big score.
+                </button>
+                <button class="flicker-button choice-button" data-choice="q5_ghost">
+                    <span class="choice-key">[D]</span> Nowhere. I was never there. I'm already prepping for the next contract.
+                </button>
+            </div>
+        </div>
+
+
+        <!-- ===== RESULT PAGE ===== -->
+        <div id="result" class="page w-full">
+            <div class="neon-border p-8 md:p-12 rounded-lg text-center space-y-6">
+                
+                <img src="https://placehold.co/800x400/030104/ff00ff?text=SYNDICATE_ARCHIVE_77&font=share-tech-mono" 
+                     alt="Syndicate Archive Image" 
+                     class="w-full h-auto rounded-md neon-border opacity-50 mb-4"
+                     onerror="this.style.display='none'">
+
+                <h2 id="result-status" class="text-2xl neon-text-yellow">[ANALYSIS COMPLETE :: ASSIGNMENT FINALIZED]</h2>
+                <p id="result-pre-title" class="text-xl text-gray-300">Your signal resonates with the Syndicate. Your calling is clear:</p>
+
+                <h1 id="role-title" class="text-5xl font-bold neon-text-pink uppercase"></h1>
+                <pre id="role-art" class="text-lg neon-text-pink"></pre>
+                <p id="role-description" class="text-xl max-w-xl mx-auto text-gray-200"></p>
+
+                <p id="role-final-message" class="text-lg neon-text-cyan">
+                    Welcome to the Syndicate, initiate.
+                    <br>
+                    Don't get flatlined.
+                </p>
+
+                <button id="restart-btn" class="flicker-button px-8 py-2 text-lg font-bold uppercase rounded-sm">
+                    [Flush Cache :: Re-Run]
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Easter Egg for the console
+        console.log(
+            "%c       \n    __     __    ___   ___  ___  \n    \\ \\   / /   / _ \\  | \ | |  \n     \\ \\_/ /   | | | | |  \\| |  \n      \\   /    | | | | | . ` |  \n       | |     | |_| | | |\\  |  \n       |_|      \\___/  |_| \\_|  \n                                \n   C Y B E R   ::   S Y N D I C A T E\n\n%c >> CONNECTION ESTABLISHED. WELCOME TO THE SYNDICATE. <<",
+            "color: #00ffff; font-family: monospace; font-size: 14px;",
+            "color: #ff00ff; font-family: monospace; font-size: 12px;"
+        );
+
+        // --- DOM Elements ---
+        const pages = document.querySelectorAll('.page');
+        const bootSequence = document.getElementById('boot-sequence');
+        const bootLog = document.getElementById('boot-log');
+        const landingPage = document.getElementById('landing');
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+
+        // 404 Page
+        const error404Page = document.getElementById('error-404');
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalMessage = document.getElementById('terminal-message');
+
+        // Stage 1: Reaction
+        const stage1Page = document.getElementById('breach-stage-1');
+        const reactionBtn = document.getElementById('reaction-btn');
+        const reactionMarker = document.getElementById('reaction-marker');
+        const reactionTarget = document.getElementById('reaction-target-zone');
+        const reactionMessage = document.getElementById('reaction-message');
+
+        // Stage 2: Memory
+        const stage2Page = document.getElementById('breach-stage-2');
+        const memorySequenceDisplay = document.getElementById('memory-sequence-display');
+        const memoryInputArea = document.getElementById('memory-input-area');
+        const memoryMessage = document.getElementById('memory-message');
+
+        // Stage 3: Triangulation
+        const stage3Page = document.getElementById('breach-stage-3');
+        const triangulationGrid = document.getElementById('triangulation-grid');
+        const triangulationReadout = document.getElementById('triangulation-readout');
+        const triangulationMessage = document.getElementById('triangulation-message');
+
+        // Stage 4: Evasion
+        const stage4Page = document.getElementById('breach-stage-4');
+        const evasionGrid = document.getElementById('evasion-grid');
+        const evasionTimerBar = document.getElementById('evasion-timer-bar');
+        const proximityDisplay = document.getElementById('proximity-display');
+        const evasionMessage = document.getElementById('evasion-message');
+
+        // Stage 5: Aim Tester
+        const stage5Page = document.getElementById('breach-stage-5');
+        const aimGrid = document.getElementById('aim-grid');
+        const aimTarget = document.getElementById('aim-target');
+        const aimTimerBar = document.getElementById('aim-timer-bar');
+        const aimScoreDisplay = document.getElementById('aim-score');
+        const aimMessage = document.getElementById('aim-message');
+
+        // Stage 6: Typing
+        const stage6Page = document.getElementById('breach-stage-6');
+        const typingTargetString = document.getElementById('typing-target-string');
+        const typingTimerBar = document.getElementById('typing-timer-bar');
+        const typingInput = document.getElementById('typing-input');
+        const typingMessage = document.getElementById('typing-message');
+
+        // Stage 7: De-obfuscation
+        const stage7Page = document.getElementById('breach-stage-7');
+        const deobfuscationTarget = document.getElementById('deobfuscation-target');
+        const deobfuscationTimerBar = document.getElementById('deobfuscation-timer-bar');
+        const deobfuscationInput = document.getElementById('deobfuscation-input');
+        const deobfuscationMessage = document.getElementById('deobfuscation-message');
+
+        // Stage 8: Brute-Force Logic
+        const stage8Page = document.getElementById('breach-stage-8');
+        const bruteforceInputs = [
+            document.getElementById('bruteforce-input-0'),
+            document.getElementById('bruteforce-input-1'),
+            document.getElementById('bruteforce-input-2')
+        ];
+        const bruteforceSubmitBtn = document.getElementById('bruteforce-submit-btn');
+        const bruteforceMessage = document.getElementById('bruteforce-message');
+        const bruteforceHistory = document.getElementById('bruteforce-history');
+
+        // Stage 9: Puzzle
+        const stage9Page = document.getElementById('breach-stage-9');
+        const puzzleTextContainer = document.getElementById('puzzle-text-container');
+        const puzzleInput = document.getElementById('puzzle-input');
+        const puzzleSubmitBtn = document.getElementById('puzzle-submit-btn');
+        const puzzleMessage = document.getElementById('puzzle-message');
+
+        // Stage 10: Psyche-Core 1
+        const stage10Page = document.getElementById('breach-stage-10');
+        const psycheStageTitle = document.getElementById('psyche-stage-title');
+        const psycheQuestions = document.querySelectorAll('.psyche-question');
+        const psycheButtons = document.querySelectorAll('.choice-button'); // All choice buttons
+        let currentPsycheQuestion = 1;
+        const totalPsycheQuestions = 4; // Q1, Q2, Q3, Q4 in this stage
+
+        // Stage 11: Psyche-Core 2
+        const stage11Page = document.getElementById('breach-stage-11');
+
+        // Result Page
+        const resultPage = document.getElementById('result');
+        const resultStatus = document.getElementById('result-status');
+        const resultPreTitle = document.getElementById('result-pre-title');
+        const roleTitleEl = document.getElementById('role-title');
+        const roleArtEl = document.getElementById('role-art');
+        const roleDescriptionEl = document.getElementById('role-description');
+        const roleFinalMessage = document.getElementById('role-final-message');
+
+        // --- Game State & Config ---
+        let breachStats = {};
+        let psycheScores = {};
+        let currentStageNumber = 0;
+        
+        // Stage 1
+        let reactionGameLoop;
+        const BASE_REACTION_SPEED = 0.5; // Slower base speed
+        let reactionSpeed = BASE_REACTION_SPEED; // % per frame
+        let reactionDirection = 1; // 1 for right, -1 for left
+        let reactionPosition = 0;
+        let reactionAttempts = 0;
+        
+        // Stage 2
+        const memorySymbols = ['&#9733;', '&#9774;', '&#9762;', '&#9812;', '&#9823;']; // Star, Peace, Bio, Crown, Scepter
+        let memorySequence = [];
+        let memoryPlayerInput = [];
+        let memoryAttempts = 0;
+
+        // Stage 3
+        let triangulationTarget = 0;
+        let triangulationAttempts = 0;
+        const TRIANGULATION_MAX_ATTEMPTS = 3;
+
+        // Stage 4
+        let evasionHotZone = { x: 0, y: 0, radius: 30 };
+        let evasionTimerLoop;
+        let evasionTimeLeft = 15000; // 15 seconds
+        const EVASION_TIME_LIMIT = 15000;
+
+        // Stage 5
+        let aimScore = 0;
+        let aimTimerLoop;
+        let aimTimeLeft = 15000; // 15 seconds
+        const AIM_TIME_LIMIT = 15000;
+        const AIM_HITS_REQUIRED = 10;
+
+        // Stage 6
+        const typingStrings = [
+            "exec(wintermute.exe)", // Neuromancer
+            "access: 'LONE_STAR_DATABASE'", // Shadowrun
+            "force(deus_ex_machina_protocol)", // Deus Ex
+            "v01d_w@lker_pr0t0c0l(true)"
+        ];
+        let currentTypingString = "";
+        let typingTimerLoop;
+        let typingTimeLeft = 12000; // 12 seconds
+        const TYPING_TIME_LIMIT = 12000;
+        let typingAttempts = 0;
+        
+        // Stage 7
+        const deobfuscationStrings = [
+            {obfuscated: "s3t_@cce$$('tyrell_corp', 'nexus_6')", solution: "set_access('tyrell_corp', 'nexus_6')"}, // Blade Runner
+            {obfuscated: "l0g_0ff( 't@n@k@_s@1t0' )", solution: "log_off( 'tanaka_saito' )"}, // Ghost in the Shell / Inception
+            {obfuscated: "d3l *.* // f0rce_rm", solution: "del *.* // force_rm"},
+            {obfuscated: "c0nnect( 'n30_c1ty_hQ', 77 )", solution: "connect( 'neo_city_hq', 77 )"}
+        ];
+        let currentDeobfuscation = {};
+        let deobfuscationTimerLoop;
+        let deobfuscationTimeLeft = 15000; // 15 seconds
+        const DEOBFUSCATION_TIME_LIMIT = 15000;
+        let deobfuscationAttempts = 0;
+
+        // Stage 8
+        let bruteforceKey = [];
+        let bruteforceAttempts = 0;
+        const BRUTEFORCE_MAX_ATTEMPTS = 5;
+
+        // Stage 9
+        const puzzleKey = "WAKE_UP_SAMURAI"; // Cyberpunk 2077
+        let puzzleStartTime;
+
+        // --- Role Database ---
+        const roles = {
+            netrunner: {
+                title: "Netrunner",
+                art: ``, // Art removed for brevity, will be re-added
+                description: "You are the Syndicate's mind. The digital ether is your playground. You see the code behind the world and bend it to your will. ICE is just a puzzle, and firewalls are suggestions."
+            },
+            ghost: {
+                title: "Ghost",
+                art: ``,
+                description: "You are the Syndicate's shadow. A whisper, a rumor. You move unseen, unheard, and strike from the darkness. You are the reason corps check empty rooms twice."
+            },
+            enforcer: {
+                title: "Enforcer",
+                art: ``,
+                description: "You are the Syndicate's fist. Chrome, steel, and raw power. When negotiations fail, you are the consequence. You are the street samurai, the muscle, the final word."
+            },
+            fixer: {
+                title: "Fixer",
+                art: ``,
+                description: "You're a hybrid, a jack-of-all-trades. You can talk, fight, and code. You're the one who gets things *done*. The Syndicate needs chameleons like you."
+            },
+            flatlined: {
+                title: "[ F L A T L I N E D ]",
+                art: `
+   _   __                   _     _ 
+  | | / /                  | |   (_)
+  | |/ /  __ _ _ __ ___  __| |    _ 
+  |    \ / _\` | '__/ _ \\/ _\` |   | |
+  | |\  \ (_| | | |  __/ (_| |   | |
+  \\_| \_/\__,_|_|  \___|\__,_|  _/ |
+                               / | |
+                              |__/_/ 
+                `,
+                description: "Your signal just went dead. The ICE was too strong, or you were too weak. The Syndicate doesn't wait for ghosts... unless they're the right kind. You're not.",
+                finalMessage: "//CONNECTION_TERMINATED"
+            }
+        };
+        // Re-populating ASCII Art
+        roles.netrunner.art = `
+    / /  / /
+   / /  / /_  _ _ __  __ _ 
+  / /  / / _ \\| | '_ \\/ _\` |
+ / /  / / (_) | | | | | (_| |
+/_/  /_/ \\___/|_|_| |_|\\__, |
+                       |___/ 
+                `;
+        roles.ghost.art = `
+    / / / /                 
+   / / / /_ __ _ __ ___ __ _ 
+  / / / / '__| '_ \` _ \\/ _\` |
+ / / / /| |  | | | | | | (_| |
+/_/ /_/ |_|  |_| |_| |_|\\__,_|
+                `;
+        roles.enforcer.art = `
+    / / / /                
+   / / / / ___ _ __ ___ ___ 
+  / / / / / _ \\ '_ \` _ \\/ __|
+ / / / / |  __/ | | | | \\__ \\
+/_/ /_/   \\___|_| |_| |_|___/
+                `;
+        roles.fixer.art = `
+    / / / /    
+   / / / /_ __ 
+  / / / / '_ \\
+ / / / /| |_) |
+/_/ /_/ | .__/ 
+        |_|    
+                `;
+
+        
+        // --- Easter Egg ---
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    showEasterEgg();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        function showEasterEgg() {
+            // Check if it already exists
+            if (document.getElementById('easter-egg-modal')) return;
+
+            const modal = document.createElement('div');
+            modal.id = 'easter-egg-modal';
+            modal.style.position = 'fixed';
+            modal.style.top = '50%';
+            modal.style.left = '50%';
+            modal.style.transform = 'translate(-50%, -50%)';
+            modal.style.zIndex = '9999';
+            modal.style.padding = '2rem';
+            modal.style.backgroundColor = '#030104';
+            modal.style.border = '2px solid var(--neon-pink)';
+            modal.style.boxShadow = '0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink) inset';
+            modal.style.color = 'var(--neon-pink)';
+            modal.style.textAlign = 'center';
+            modal.style.borderRadius = '8px';
+
+            modal.innerHTML = `
+                <h2 class="text-2xl neon-text-pink mb-4">[GHOST_IN_THE_SHELL]</h2>
+                <p class="text-lg text-gray-200 mb-6">"Man is an individual only by virtue of his<br>intangible memory... a memory that he<br>cannot possibly verify."</p>
+                <button id="close-easter-egg" class="flicker-button px-6 py-2 text-lg uppercase">Close</button>
+            `;
+            
+            document.body.appendChild(modal);
+
+            document.getElementById('close-easter-egg').onclick = () => {
+                document.body.removeChild(modal);
+            };
+        }
+
+        // --- Core Functions ---
+
+        /**
+         * Hides all pages and shows the one with the specified ID
+         */
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.style.display = (page.id === pageId) ? 'block' : 'none';
+            });
+            // Set stage number for bypass
+            if (pageId.startsWith('breach-stage-')) {
+                currentStageNumber = parseInt(pageId.split('-')[2]);
+            } else if (pageId === 'result') {
+                currentStageNumber = 12; // One past the last stage
+            } else {
+                currentStageNumber = 0;
+            }
+        }
+
+        /**
+         * Resets all game state and starts the boot sequence
+         */
+        function resetApp() {
+            breachStats = {
+                reactionScore: 0,
+                memoryErrors: 0,
+                triangulationErrors: 0,
+                evasionTime: 0,
+                aimScore: 0,
+                aimTime: 0,
+                typingErrors: 0,
+                deobfuscationErrors: 0,
+                bruteforceErrors: 0,
+                puzzleTime: 0,
+            };
+            psycheScores = {
+                loyalty: 0,
+                netrunner: 0,
+                ghost: 0,
+                enforcer: 0,
+                fixer: 0,
+            };
+            
+            reactionAttempts = 0;
+            memoryAttempts = 0;
+            triangulationAttempts = 0;
+            typingAttempts = 0;
+            deobfuscationAttempts = 0;
+            bruteforceAttempts = 0;
+            reactionPosition = 0;
+            reactionDirection = 1;
+            reactionSpeed = BASE_REACTION_SPEED;
+            currentStageNumber = 0;
+            currentPsycheQuestion = 1;
+            
+            cancelAnimationFrame(reactionGameLoop);
+            clearInterval(evasionTimerLoop);
+            clearInterval(aimTimerLoop);
+            clearInterval(typingTimerLoop);
+            clearInterval(deobfuscationTimerLoop);
+
+            evasionGrid.onmousemove = null; // Remove listener
+            
+            // Reset Psyche Core
+            psycheQuestions.forEach((q, i) => {
+                q.classList.toggle('active', i === 0);
+            });
+            psycheStageTitle.textContent = `>> PSYCHE_EVAL_1/4 :: [MORALITY_MATRIX]`;
+            
+            // Reset bruteforce
+            bruteforceHistory.innerHTML = "";
+            bruteforceInputs.forEach(input => input.value = '');
+
+            // --- THIS IS THE FIX ---
+            // Start at the 404 page instead of the boot sequence
+            showPage('error-404');
+            terminalInput.value = "";
+            terminalMessage.textContent = "";
+            terminalInput.focus();
+            // startBootSequence(); // Old line
+        }
+
+        /**
+         * Starts the boot sequence animation
+         */
+        function startBootSequence() {
+            showPage('boot-sequence');
+            currentStageNumber = 0; // Set stage number for boot
+            const bootLines = [
+                "[INITIATING CONNECTION TO V01D-NET...]",
+                "LOCATION: [NEOCITY_GRID_07]",
+                "STATUS: [BYPASSING_CORP_ICE...]",
+                "SYS: [FIREWALL_DETECTED]... [KERNEL_PANIC_AVOIDED]",
+                "SYS: [INJECTING_PAYLOAD...]",
+                "SYS: [ROOT_ACCESS_GAINED]",
+                "HANDSHAKE: [SECURE_CHANNEL_ESTABLISHED]",
+                "WELCOME: [UNKNOWN_USER]",
+                "\n[LOADING_PORTAL...]"
+            ];
+            let line = 0;
+            let currentText = "";
+            bootLog.textContent = "";
+
+            function typeLine() {
+                if (line < bootLines.length) {
+                    currentText += bootLines[line] + "\n";
+                    bootLog.textContent = currentText;
+                    line++;
+                    setTimeout(typeLine, Math.random() * 200 + 50);
+                } else {
+                    setTimeout(() => showPage('landing'), 500);
+                }
+            }
+            typeLine();
+        }
+
+        // --- Stage 1: Reaction Game ---
+
+        function startReactionGame() {
+            showPage('breach-stage-1');
+            reactionMessage.textContent = "";
+            reactionAttempts = 0;
+            reactionSpeed = BASE_REACTION_SPEED;
+            reactionBtn.disabled = false;
+            animateReactionMarker();
+        }
+
+        function animateReactionMarker() {
+            reactionPosition += reactionDirection * reactionSpeed;
+            if (reactionPosition > 98) {
+                reactionPosition = 98;
+                reactionDirection = -1;
+            } else if (reactionPosition < 0) {
+                reactionPosition = 0;
+                reactionDirection = 1;
+            }
+            reactionMarker.style.left = `${reactionPosition}%`;
+            reactionGameLoop = requestAnimationFrame(animateReactionMarker);
+        }
+
+        function checkReactionHit() {
+            cancelAnimationFrame(reactionGameLoop);
+            reactionAttempts++;
+            
+            const targetLeft = 45; 
+            const targetWidth = 10; 
+            const markerPos = reactionPosition;
+            
+            const perfectMin = targetLeft + (targetWidth * 0.4); // 49
+            const perfectMax = targetLeft + (targetWidth * 0.6); // 51
+
+            if (markerPos >= perfectMin && markerPos <= perfectMax) {
+                reactionMessage.textContent = "[PERFECT_HIT] :: Faster than a Kiroshi optic.";
+                reactionMessage.className = "text-lg neon-text-green h-6";
+                breachStats.reactionScore = 2;
+                reactionBtn.disabled = true;
+                setTimeout(startMemoryGame, 1500);
+            } else if (markerPos >= targetLeft && markerPos <= (targetLeft + targetWidth)) {
+                reactionMessage.textContent = "[HIT] :: CONNECTION_STABLE";
+                reactionMessage.className = "text-lg neon-text-green h-6";
+                breachStats.reactionScore = 1;
+                reactionBtn.disabled = true;
+                setTimeout(startMemoryGame, 1500);
+            } else {
+                reactionMessage.textContent = "[MISS] :: SIGNAL_BOUNCED. TRY_AGAIN.";
+                reactionMessage.className = "text-lg neon-text-red h-6";
+                if (reactionAttempts >= 3) {
+                    reactionMessage.textContent = "[FAILURE] :: TOO_SLOW. CONNECTION_LOST.";
+                    reactionBtn.disabled = true;
+                    breachStats.reactionScore = 0;
+                    setTimeout(() => showResult("flatlined"), 1500);
+                } else {
+                    reactionSpeed += 0.1; // Reduced penalty
+                    reactionGameLoop = requestAnimationFrame(animateReactionMarker);
+                }
+            }
+        }
+
+        // --- Stage 2: Memory Game ---
+        
+        function startMemoryGame() {
+            showPage('breach-stage-2');
+            memoryMessage.textContent = "PREPARE_TO_MEMORIZE...";
+            memoryMessage.className = "text-lg neon-text-yellow h-6";
+            memoryInputArea.innerHTML = '';
+            memoryInputArea.classList.add('hidden');
+            memorySequence = [];
+            memoryPlayerInput = [];
+            
+            // Generate a 5-symbol sequence (increased difficulty)
+            for (let i = 0; i < 5; i++) {
+                memorySequence.push(memorySymbols[Math.floor(Math.random() * memorySymbols.length)]);
+            }
+
+            setTimeout(() => {
+                memoryMessage.textContent = "WATCHING...";
+                memoryMessage.className = "text-lg neon-text-cyan h-6";
+                flashMemorySequence(0);
+            }, 2000);
+        }
+
+        function flashMemorySequence(index) {
+            if (index >= memorySequence.length) {
+                // Done flashing
+                memorySequenceDisplay.innerHTML = '';
+                memoryMessage.textContent = "REPLICATE_SEQUENCE_NOW";
+                memoryMessage.className = "text-lg neon-text-pink h-6";
+                setupMemoryInput();
+                return;
+            }
+
+            memorySequenceDisplay.innerHTML = `<div class="memory-symbol active">${memorySequence[index]}</div>`;
+            
+            setTimeout(() => {
+                memorySequenceDisplay.innerHTML = ''; // Blank
+                setTimeout(() => flashMemorySequence(index + 1), 200); // Pause between
+            }, 500); // How long it stays on screen
+        }
+
+        function setupMemoryInput() {
+            memoryInputArea.classList.remove('hidden');
+            memoryInputArea.innerHTML = '';
+            memorySymbols.forEach(symbol => {
+                const btn = document.createElement('button');
+                btn.innerHTML = symbol;
+                btn.classList.add('memory-input-btn', 'memory-symbol');
+                btn.onclick = () => handleMemoryInput(symbol);
+                memoryInputArea.appendChild(btn);
+            });
+        }
+        
+        function handleMemoryInput(symbol) {
+            memoryPlayerInput.push(symbol);
+            
+            // Check for mistake
+            if (memoryPlayerInput[memoryPlayerInput.length - 1] !== memorySequence[memoryPlayerInput.length - 1]) {
+                memoryMessage.textContent = "CORRUPTION_DETECTED. SEQUENCE_RESET.";
+                memoryMessage.className = "text-lg neon-text-red h-6";
+                memoryAttempts++;
+                breachStats.memoryErrors++;
+
+                if (memoryAttempts >= 3) {
+                    setTimeout(() => showResult("flatlined"), 1500);
+                } else {
+                    setTimeout(startMemoryGame, 2000); // Restart this stage
+                }
+                return;
+            }
+            
+            // Check for completion
+            if (memoryPlayerInput.length === memorySequence.length) {
+                memoryMessage.textContent = "FIREWALL_DECRYPTED. C-Beams glittering...";
+                memoryMessage.className = "text-lg neon-text-green h-6";
+                memoryInputArea.classList.add('hidden');
+                setTimeout(startTriangulationGame, 2000); // Proceed to new stage 3
+            }
+        }
+
+        // --- Stage 3: Triangulation Game ---
+        
+        function startTriangulationGame() {
+            showPage('breach-stage-3');
+            triangulationMessage.textContent = "";
+            triangulationReadout.textContent = "[SIGNAL_STRENGTH: ???]";
+            triangulationReadout.className = "text-3xl neon-text-cyan h-10";
+            triangulationAttempts = 0;
+            
+            // Set random target relay (0-8)
+            triangulationTarget = Math.floor(Math.random() * 9);
+            
+            // Create 9 relays
+            triangulationGrid.innerHTML = '';
+            for (let i = 0; i < 9; i++) {
+                const relay = document.createElement('button');
+                relay.innerHTML = '&#9672;'; // Circle
+                relay.classList.add('triangulation-relay');
+                relay.onclick = () => handleTriangulationAttempt(i);
+                triangulationGrid.appendChild(relay);
+            }
+        }
+
+        function handleTriangulationAttempt(selectedIndex) {
+            triangulationAttempts++;
+            const relays = triangulationGrid.querySelectorAll('.triangulation-relay');
+
+            if (selectedIndex === triangulationTarget) {
+                // SUCCESS
+                triangulationMessage.textContent = "SIGNAL_LOCKED. Good as Arasaka tech.";
+                triangulationMessage.className = "text-lg neon-text-green h-6";
+                triangulationReadout.textContent = "[STRENGTH: 100%]";
+                triangulationReadout.className = "text-3xl neon-text-green h-10";
+                relays.forEach(r => r.disabled = true);
+                setTimeout(startEvasionGame, 2000); // Proceed to Stage 4
+                return;
+            }
+
+            // FAILED ATTEMPT
+            breachStats.triangulationErrors++;
+
+            if (triangulationAttempts >= TRIANGULATION_MAX_ATTEMPTS) {
+                // FAILED STAGE
+                triangulationMessage.textContent = "[SIGNAL_LOST] :: TRACE_DETECTED.";
+                triangulationMessage.className = "text-lg neon-text-red h-6";
+                relays.forEach(r => r.disabled = true);
+                setTimeout(() => showResult("flatlined"), 1500);
+                return;
+            }
+
+            // Give a hint based on distance (simple grid distance)
+            const targetX = triangulationTarget % 3;
+            const targetY = Math.floor(triangulationTarget / 3);
+            const selectedX = selectedIndex % 3;
+            const selectedY = Math.floor(selectedIndex / 3);
+            
+            const distance = Math.abs(targetX - selectedX) + Math.abs(targetY - selectedY);
+            
+            if (distance <= 1) {
+                triangulationReadout.textContent = "[STRENGTH: 85%]";
+                triangulationReadout.className = "text-3xl neon-text-red h-10";
+            } else if (distance <= 2) {
+                triangulationReadout.textContent = "[STRENGTH: 50%]";
+                triangulationReadout.className = "text-3xl neon-text-yellow h-10";
+            } else {
+                triangulationReadout.textContent = "[STRENGTH: 15%]";
+                triangulationReadout.className = "text-3xl neon-text-cyan h-10";
+            }
+            
+            triangulationMessage.textContent = `[ECHO_DETECTED] :: ${TRIANGULATION_MAX_ATTEMPTS - triangulationAttempts} ATTEMPTS_REMAINING`;
+            triangulationMessage.className = "text-lg neon-text-red h-6";
+            relays[selectedIndex].disabled = true; // Disable clicked relay
+        }
+
+
+        // --- Stage 4: Evasion Game ---
+        
+        function startEvasionGame() {
+            showPage('breach-stage-4');
+            evasionMessage.textContent = "";
+            proximityDisplay.textContent = "[C O L D]";
+            proximityDisplay.className = "text-3xl neon-text-cyan h-10";
+            evasionTimeLeft = EVASION_TIME_LIMIT;
+            
+            // Set random hot zone
+            const gridRect = evasionGrid.getBoundingClientRect();
+            evasionHotZone.x = Math.random() * (gridRect.width - evasionHotZone.radius * 2) + evasionHotZone.radius;
+            evasionHotZone.y = Math.random() * (gridRect.height - evasionHotZone.radius * 2) + evasionHotZone.radius;
+
+            // Timer
+            clearInterval(evasionTimerLoop);
+            evasionTimerLoop = setInterval(() => {
+                evasionTimeLeft -= 100;
+                const percent = (evasionTimeLeft / EVASION_TIME_LIMIT) * 100;
+                evasionTimerBar.style.width = `${percent}%`;
+
+                if (evasionTimeLeft <= 0) {
+                    clearInterval(evasionTimerLoop);
+                    evasionGrid.onmousemove = null;
+                    evasionMessage.textContent = "[PATROL_DETECTED] :: FLATLINED";
+                    setTimeout(() => showResult("flatlined"), 1500);
+                }
+            }, 100);
+
+            // Mouse listener
+            evasionGrid.onmousemove = (e) => {
+                const rect = evasionGrid.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                const distance = Math.sqrt(
+                    Math.pow(mouseX - evasionHotZone.x, 2) +
+                    Math.pow(mouseY - evasionHotZone.y, 2)
+                );
+
+                if (distance < evasionHotZone.radius) {
+                    // FOUND IT
+                    clearInterval(evasionTimerLoop);
+                    evasionGrid.onmousemove = null;
+                    breachStats.evasionTime = (EVASION_TIME_LIMIT - evasionTimeLeft) / 1000;
+                    proximityDisplay.textContent = "[NODE_SECURED]";
+                    proximityDisplay.className = "text-3xl neon-text-green h-10";
+                    evasionMessage.textContent = "Signal acquired. Like a whisper in the 'Shell.";
+                    evasionMessage.className = "text-lg neon-text-green h-6";
+                    setTimeout(startAimGame, 2000); // Proceed to NEW Stage 5
+                } else if (distance < 100) {
+                    proximityDisplay.textContent = "[H O T !]";
+                    proximityDisplay.className = "text-3xl neon-text-red h-10";
+                } else if (distance < 200) {
+                    proximityDisplay.textContent = "[W A R M]";
+                    proximityDisplay.className = "text-3xl neon-text-yellow h-10";
+                } else {
+                    proximityDisplay.textContent = "[C O L D]";
+                    proximityDisplay.className = "text-3xl neon-text-cyan h-10";
+                }
+            };
+        }
+
+        // --- NEW Stage 5: Aim 'n' Hack ---
+
+        function startAimGame() {
+            showPage('breach-stage-5');
+            aimScore = 0;
+            aimScoreDisplay.textContent = "0";
+            aimTimeLeft = AIM_TIME_LIMIT;
+            aimMessage.textContent = "";
+            moveAimTarget();
+
+            clearInterval(aimTimerLoop);
+            aimTimerLoop = setInterval(() => {
+                aimTimeLeft -= 100;
+                const percent = (aimTimeLeft / AIM_TIME_LIMIT) * 100;
+                aimTimerBar.style.width = `${percent}%`;
+
+                if (aimTimeLeft <= 0) {
+                    clearInterval(aimTimerLoop);
+                    aimTarget.onclick = null;
+                    aimGrid.onclick = null;
+                    aimMessage.textContent = "[DATA_STREAM_LOST] :: INSUFFICIENT_DATA";
+                    setTimeout(() => showResult("flatlined"), 1500);
+                }
+            }, 100);
+
+            aimTarget.onclick = (e) => {
+                e.stopPropagation(); // Prevent grid click
+                aimScore++;
+                aimScoreDisplay.textContent = aimScore;
+                
+                if (aimScore >= AIM_HITS_REQUIRED) {
+                    // SUCCESS
+                    clearInterval(aimTimerLoop);
+                    aimTarget.onclick = null;
+                    aimGrid.onclick = null;
+                    breachStats.aimScore = aimScore;
+                    breachStats.aimTime = (AIM_TIME_LIMIT - aimTimeLeft) / 1000;
+                    aimMessage.textContent = "[DATA_PACKET_SECURED]";
+                    aimMessage.className = "text-lg neon-text-green h-6";
+                    setTimeout(startTypingGame, 2000); // Proceed to Stage 6
+                } else {
+                    moveAimTarget();
+                }
+            };
+            
+            aimGrid.onclick = () => {
+                // Miss penalty
+                aimTimeLeft -= 500; // 0.5 second penalty
+                aimMessage.textContent = "[MISS] :: -0.5s";
+                aimMessage.className = "text-lg neon-text-red h-6";
+                setTimeout(() => aimMessage.textContent = "", 500);
+            };
+        }
+        
+        function moveAimTarget() {
+            const gridRect = aimGrid.getBoundingClientRect();
+            const targetSize = 40;
+            const x = Math.random() * (gridRect.width - targetSize);
+            const y = Math.random() * (gridRect.height - targetSize);
+            aimTarget.style.left = `${x}px`;
+            aimTarget.style.top = `${y}px`;
+        }
+
+        // --- Stage 6: Typing Game ---
+
+        function startTypingGame() {
+            showPage('breach-stage-6');
+            typingMessage.textContent = "";
+            typingInput.value = "";
+            typingInput.disabled = false;
+            currentTypingString = typingStrings[Math.floor(Math.random() * typingStrings.length)];
+            typingTargetString.textContent = currentTypingString;
+            typingTimeLeft = TYPING_TIME_LIMIT;
+
+            clearInterval(typingTimerLoop);
+            typingTimerLoop = setInterval(() => {
+                typingTimeLeft -= 100;
+                const percent = (typingTimeLeft / TYPING_TIME_LIMIT) * 100;
+                typingTimerBar.style.width = `${percent}%`;
+
+                if (typingTimeLeft <= 0) {
+                    clearInterval(typingTimerLoop);
+                    typingInput.disabled = true;
+                    typingMessage.textContent = "[WATCHDOG_TRIGGERED] :: ACCESS_REVOKED";
+                    setTimeout(() => showResult("flatlined"), 1500);
+                }
+            }, 100);
+            
+            typingInput.focus();
+        }
+
+        function checkTypingInput() {
+            clearInterval(typingTimerLoop);
+            
+            if (typingInput.value === currentTypingString) {
+                typingMessage.textContent = "[EXPLOIT_ACCEPTED] :: KERNEL_COMPROMISED";
+                typingMessage.className = "text-lg neon-text-green h-6";
+                typingInput.disabled = true;
+                setTimeout(startDeobfuscationGame, 2000); // Proceed to new stage 7
+            } else {
+                typingMessage.textContent = "[CODE_CORRUPTED] :: SEQUENCE_REJECTED";
+                typingMessage.className = "text-lg neon-text-red h-6";
+                typingAttempts++;
+                breachStats.typingErrors++;
+                
+                if (typingAttempts >= 2) {
+                    typingInput.disabled = true;
+                    setTimeout(() => showResult("flatlined"), 1500);
+                } else {
+                    setTimeout(startTypingGame, 2000); // Restart this stage
+                }
+            }
+        }
+
+
+        // --- Stage 7: De-obfuscation Game ---
+
+        function startDeobfuscationGame() {
+            showPage('breach-stage-7');
+            deobfuscationMessage.textContent = "";
+            deobfuscationInput.value = "";
+            deobfuscationInput.disabled = false;
+            currentDeobfuscation = deobfuscationStrings[Math.floor(Math.random() * deobfuscationStrings.length)];
+            deobfuscationTarget.textContent = currentDeobfuscation.obfuscated;
+            deobfuscationTimeLeft = DEOBFUSCATION_TIME_LIMIT;
+
+            clearInterval(deobfuscationTimerLoop);
+            deobfuscationTimerLoop = setInterval(() => {
+                deobfuscationTimeLeft -= 100;
+                const percent = (deobfuscationTimeLeft / DEOBFUSCATION_TIME_LIMIT) * 100;
+                deobfuscationTimerBar.style.width = `${percent}%`;
+
+                if (deobfuscationTimeLeft <= 0) {
+                    clearInterval(deobfuscationTimerLoop);
+                    deobfuscationInput.disabled = true;
+                    deobfuscationMessage.textContent = "[WATCHDOG_TRIGGERED] :: ACCESS_REVOKED";
+                    setTimeout(() => showResult("flatlined"), 1500);
+                }
+            }, 100);
+            
+            deobfuscationInput.focus();
+        }
+
+        function checkDeobfuscationInput() {
+            clearInterval(deobfuscationTimerLoop);
+            
+            // Convert both to lowercase for case-insensitive check
+            const solution = currentDeobfuscation.solution.toLowerCase();
+            const userInput = deobfuscationInput.value.trim().toLowerCase();
+
+            if (userInput === solution) {
+                deobfuscationMessage.textContent = "[CODE_SANITIZED] :: EXPLOIT_ARMED";
+                deobfuscationMessage.className = "text-lg neon-text-green h-6";
+                deobfuscationInput.disabled = true;
+                setTimeout(startBruteForceGame, 2000); // Proceed to NEW Stage 8
+            } else {
+                deobfuscationMessage.textContent = "[COMPILATION_ERROR] :: SEQUENCE_REJECTED";
+                deobfuscationMessage.className = "text-lg neon-text-red h-6";
+                deobfuscationAttempts++;
+                breachStats.deobfuscationErrors++;
+                
+                if (deobfuscationAttempts >= 2) {
+                    deobfuscationInput.disabled = true;
+                    setTimeout(() => showResult("flatlined"), 1500);
+                } else {
+                    setTimeout(startDeobfuscationGame, 2000); // Restart this stage
+                }
+            }
+        }
+
+        // --- NEW Stage 8: Brute-Force Logic ---
+
+        function startBruteForceGame() {
+            showPage('breach-stage-8');
+            bruteforceMessage.textContent = "";
+            bruteforceHistory.innerHTML = "";
+            bruteforceAttempts = 0;
+            bruteforceSubmitBtn.disabled = false;
+            
+            // Generate 3 unique digits
+            bruteforceKey = [];
+            while (bruteforceKey.length < 3) {
+                const digit = Math.floor(Math.random() * 10).toString();
+                if (!bruteforceKey.includes(digit)) {
+                    bruteforceKey.push(digit);
+                }
+            }
+            // console.log("Bruteforce Key:", bruteforceKey.join('')); // DEV_ONLY
+        }
+
+        function checkBruteForceGuess() {
+            const guess = [
+                bruteforceInputs[0].value,
+                bruteforceInputs[1].value,
+                bruteforceInputs[2].value
+            ];
+
+            if (guess.some(d => d === '')) {
+                bruteforceMessage.textContent = "INCOMPLETE_KEY";
+                return;
+            }
+            
+            // Check for duplicate digits in guess
+            if (new Set(guess).size !== 3) {
+                bruteforceMessage.textContent = "DUPLICATE_DIGITS_DETECTED";
+                return;
+            }
+
+            bruteforceAttempts++;
+            let correct = 0;
+            let partial = 0;
+            let miss = 0;
+            
+            let feedback = '';
+
+            guess.forEach((digit, index) => {
+                if (digit === bruteforceKey[index]) {
+                    correct++;
+                    feedback += `<span class="feedback-correct">[C]</span>`;
+                } else if (bruteforceKey.includes(digit)) {
+                    partial++;
+                    feedback += `<span class="feedback-partial">[P]</span>`;
+                } else {
+                    miss++;
+                    feedback += `<span class="feedback-miss">[M]</span>`;
+                }
+            });
+
+            // Add to history
+            const historyEntry = document.createElement('div');
+            historyEntry.className = 'history-item';
+            historyEntry.innerHTML = `
+                <span class="history-guess">${guess.join(' ')}</span>
+                <span class="history-feedback">${feedback}</span>
+            `;
+            bruteforceHistory.appendChild(historyEntry);
+            bruteforceHistory.scrollTop = bruteforceHistory.scrollHeight;
+
+            // Clear inputs
+            bruteforceInputs.forEach(input => input.value = '');
+            bruteforceInputs[0].focus();
+
+
+            if (correct === 3) {
+                bruteforceMessage.textContent = "[LOGIC_GATE_OPENED]";
+                bruteforceMessage.className = "text-lg neon-text-green h-6";
+                bruteforceSubmitBtn.disabled = true;
+                breachStats.bruteforceErrors = bruteforceAttempts - 1;
+                setTimeout(startPuzzleGame, 2000); // Proceed to Stage 9
+            } else if (bruteforceAttempts >= BRUTEFORCE_MAX_ATTEMPTS) {
+                bruteforceMessage.textContent = "[LOGIC_BURNED_OUT] :: ACCESS_DENIED";
+                bruteforceMessage.className = "text-lg neon-text-red h-6";
+                bruteforceSubmitBtn.disabled = true;
+                breachStats.bruteforceErrors = bruteforceAttempts;
+                setTimeout(() => showResult("flatlined"), 1500);
+            } else {
+                bruteforceMessage.textContent = `[KEY_INCORRECT] :: ${BRUTEFORCE_MAX_ATTEMPTS - bruteforceAttempts} ATTEMPTS_REMAINING`;
+                bruteforceMessage.className = "text-lg neon-text-red h-6";
+            }
+        }
+
+        // --- Stage 9: Puzzle Game ---
+
+        function startPuzzleGame() {
+            showPage('breach-stage-9');
+            puzzleMessage.textContent = "";
+            puzzleInput.value = "";
+            puzzleInput.disabled = false;
+            puzzleSubmitBtn.disabled = false;
+            puzzleTextContainer.textContent = generateGlitchedText(puzzleKey);
+            puzzleStartTime = Date.now();
+        }
+
+        function generateGlitchedText(key) {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{};:'\\|,./<>?";
+            let text = "";
+            for (let i = 0; i < 2000; i++) {
+                text += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            // Hide the key somewhere in the middle
+            const insertPos = Math.floor(text.length / 2);
+            text = text.slice(0, insertPos) + " " + key + " " + text.slice(insertPos);
+            
+            // Add some "human" readable fragments
+            const fragments = ["SYS_LOG_001", "CORRUPT_DATA", "NEOCITY_GRID", "ACCESS_DENIED", "REBOOTING...", "USER_UNKNOWN"];
+            for (let frag of fragments) {
+                const pos = Math.floor(Math.random() * text.length);
+                text = text.slice(0, pos) + ` //${frag}// ` + text.slice(pos);
+            }
+            return text;
+        }
+
+        function checkPuzzleKey() {
+            if (puzzleInput.value.trim().toUpperCase() === puzzleKey.toUpperCase()) { // Make key check case-insensitive
+                breachStats.puzzleTime = (Date.now() - puzzleStartTime) / 1000; // in seconds
+                puzzleMessage.textContent = "ROOT_ACCESS_GRANTED. We have a city to burn...";
+                puzzleMessage.className = "text-lg neon-text-green h-6";
+                puzzleSubmitBtn.disabled = true;
+                puzzleInput.disabled = true;
+                setTimeout(startPsycheCore, 2000); // Proceed to NEW Stage 10
+            } else {
+                puzzleMessage.textContent = "INVALID_KEY :: ACCESS_DENIED";
+                puzzleMessage.className = "text-lg neon-text-red h-6";
+                puzzleInput.value = "";
+            }
+        }
+
+        // --- NEW Stage 10 & 11 Functions ---
+
+        function startPsycheCore() {
+            showPage('breach-stage-10');
+            // Logic to handle psyche questions will be in `handlePsycheChoice`
+        }
+
+        function handlePsycheChoice(choice) {
+            // --- Tally Scores ---
+            
+            // Q1: Loyalty
+            if (choice === 'q1_betray') {
+                psycheScores.loyalty = -100; // Instant fail
+            } else if (choice === 'q1_trap') {
+                psycheScores.loyalty += 2;
+                psycheScores.fixer += 1;
+            } else if (choice === 'q1_ignore') {
+                psycheScores.loyalty -= 1; // Not disloyal, but not helpful
+                psycheScores.ghost += 1;
+            }
+            
+            // Q2: Loyalty 2
+            if (choice === 'q2_take_fall') {
+                psycheScores.loyalty += 2;
+                psycheScores.enforcer += 1;
+            } else if (choice === 'q2_misdirect') {
+                psycheScores.loyalty += 1;
+                psycheScores.fixer += 2;
+                psycheScores.ghost += 1;
+            } else if (choice === 'q2_truth_solution') {
+                psycheScores.loyalty += 1;
+                psycheScores.netrunner += 1;
+                psycheScores.fixer += 1;
+            } else if (choice === 'q2_give_up') {
+                psycheScores.loyalty -= 2; // Bad loyalty
+                psycheScores.ghost += 1;
+            }
+
+            // Q3: Role 1
+            if (choice === 'q3_ghost') {
+                psycheScores.ghost += 2;
+            } else if (choice === 'q3_netrunner') {
+                psycheScores.netrunner += 2;
+            } else if (choice === 'q3_enforcer') {
+                psycheScores.enforcer += 2;
+            } else if (choice === 'q3_fixer') {
+                psycheScores.fixer += 2;
+            }
+            
+            // Q4: Role 2
+            if (choice === 'q4_fixer') {
+                psycheScores.fixer += 2;
+            } else if (choice === 'q4_betray_mercenary') {
+                psycheScores.loyalty -= 2; // Betraying the mission objective
+            } else if (choice === 'q4_ghost') {
+                psycheScores.ghost += 2;
+            } else if (choice === 'q4_netrunner') {
+                psycheScores.netrunner += 2;
+            }
+
+            // Q5: Role 3 (Final)
+            if (choice === 'q5_netrunner') {
+                psycheScores.netrunner += 2;
+            } else if (choice === 'q5_enforcer') {
+                psycheScores.enforcer += 2;
+            } else if (choice === 'q5_fixer') {
+                psycheScores.fixer += 2;
+            } else if (choice === 'q5_ghost') {
+                psycheScores.ghost += 2;
+            }
+
+            // --- Advance to next question or finish ---
+            const currentQuestionEl = document.getElementById(`psyche-q${currentPsycheQuestion}`);
+            if (currentQuestionEl) {
+                currentQuestionEl.classList.remove('active');
+            }
+
+            currentPsycheQuestion++;
+
+            if (currentPsycheQuestion <= totalPsycheQuestions) {
+                // Next question in Stage 10
+                const nextQuestionEl = document.getElementById(`psyche-q${currentPsycheQuestion}`);
+                if (nextQuestionEl) {
+                    nextQuestionEl.classList.add('active');
+                }
+                
+                let title = `>> PSYCHE_EVAL_${currentPsycheQuestion}/4 :: `;
+                if (currentPsycheQuestion === 2) title += "[CREW_CONFLICT]";
+                else if (currentPsycheQuestion === 3) title += "[TRIAGE_PROTOCOL]";
+                else if (currentPsycheQuestion === 4) title += "[ASSET_PRIORITIZATION]";
+                psycheStageTitle.textContent = title;
+
+            } else if (currentPsycheQuestion === 5) {
+                // Move to Stage 11
+                startFinalPsycheTest();
+            } else if (currentPsycheQuestion > 5) {
+                // Finished
+                showResult();
+            }
+        }
+
+        function startFinalPsycheTest() {
+            showPage('breach-stage-11');
+            // This stage has its own buttons that will also call `handlePsycheChoice`
+        }
+
+
+        // --- Result Calculation ---
+
+        function showResult() {
+            currentStageNumber = 12; // Final stage
+            let resultRole = "fixer"; // Default
+            
+            // 1. Check for instant-fail loyalty
+            if (psycheScores.loyalty < -50) { // e.g., from q1_betray
+                resultRole = "flatlined";
+                roles.flatlined.description = "You took the credits. Loyalty has a price, and you found yours. The Syndicate doesn't tolerate rats.";
+            } else if (psycheScores.loyalty < 0) {
+                 resultRole = "flatlined";
+                 roles.flatlined.description = "Your choices show a focus on self-preservation above the Syndicate. A lone wolf is a dead wolf. We don't employ liabilities.";
+            } else {
+                // 2. Find the highest role score
+                let maxScore = 0;
+                
+                // Exclude loyalty from role calculation
+                const roleScores = {
+                    netrunner: psycheScores.netrunner,
+                    ghost: psycheScores.ghost,
+                    enforcer: psycheScores.enforcer,
+                    fixer: psycheScores.fixer
+                };
+
+                for (const [role, score] of Object.entries(roleScores)) {
+                    if (score > maxScore) {
+                        maxScore = score;
+                        resultRole = role;
+                    }
+                }
+                // If highest score is 0 or tied, default to Fixer
+                if (maxScore <= 0) {
+                    resultRole = "fixer";
+                }
+            }
+            
+            const roleData = roles[resultRole];
+            
+            // Update all result fields
+            roleTitleEl.textContent = roleData.title;
+            roleArtEl.textContent = roleData.art;
+            roleDescriptionEl.textContent = roleData.description;
+            
+            if (resultRole === "flatlined") {
+                resultStatus.textContent = "[CONNECTION_TERMINATED]";
+                resultStatus.className = "text-2xl neon-text-red";
+                resultPreTitle.textContent = "Your signal just went dead.";
+                roleFinalMessage.textContent = roleData.finalMessage;
+                roleFinalMessage.className = "text-lg neon-text-red";
+            } else {
+                resultStatus.textContent = "[ANALYSIS COMPLETE :: ASSIGNMENT FINALIZED]";
+                resultStatus.className = "text-2xl neon-text-yellow";
+                resultPreTitle.textContent = "Your signal resonates with the Syndicate. Your calling is clear:";
+                roleFinalMessage.textContent = "Welcome to the Syndicate, initiate.\nDon't get flatlined.";
+                roleFinalMessage.className = "text-lg neon-text-cyan";
+            }
+
+            showPage('result');
+        }
+
+        // --- DEV BYPASS FUNCTION ---
+        function devBypass() {
+            console.warn(`DEV_BYPASS: Skipping stage ${currentStageNumber}`);
+            switch (currentStageNumber) {
+                case 1: // Skip Reaction
+                    breachStats.reactionScore = 2; // Perfect
+                    cancelAnimationFrame(reactionGameLoop);
+                    startMemoryGame();
+                    break;
+                case 2: // Skip Memory
+                    breachStats.memoryErrors = 0;
+                    startTriangulationGame();
+                    break;
+                case 3: // Skip Triangulation
+                    breachStats.triangulationErrors = 0;
+                    startEvasionGame();
+                    break;
+                case 4: // Skip Evasion
+                    breachStats.evasionTime = 1; // 1 second
+                    clearInterval(evasionTimerLoop);
+                    evasionGrid.onmousemove = null;
+                    startAimGame(); // Go to new stage 5
+                    break;
+                case 5: // Skip Aim
+                    breachStats.aimScore = AIM_HITS_REQUIRED;
+                    breachStats.aimTime = 1;
+                    clearInterval(aimTimerLoop);
+                    aimTarget.onclick = null;
+                    aimGrid.onclick = null;
+                    startTypingGame(); // Go to stage 6
+                    break;
+                case 6: // Skip Typing
+                    breachStats.typingErrors = 0;
+                    clearInterval(typingTimerLoop);
+                    startDeobfuscationGame(); // Go to stage 7
+                    break;
+                case 7: // Skip De-obfuscation
+                    breachStats.deobfuscationErrors = 0;
+                    clearInterval(deobfuscationTimerLoop);
+                    startBruteForceGame(); // Go to new stage 8
+                    break;
+                case 8: // Skip Bruteforce
+                    breachStats.bruteforceErrors = 0;
+                    startPuzzleGame(); // Go to stage 9
+                    break;
+                case 9: // Skip Puzzle
+                    breachStats.puzzleTime = 1; // 1 second
+                    startPsycheCore(); // Go to stage 10
+                    break;
+                case 10: // Skip Psyche-Core 1
+                    // Set some default "good" answers
+                    psycheScores.loyalty = 4;
+                    psycheScores.fixer = 2;
+                    startFinalPsycheTest(); // Go to stage 11
+                    break;
+                case 11: // Skip Psyche-Core 2
+                    psycheScores.fixer += 2; // Add to default
+                    showResult(); // Go to results
+                    break;
+            }
+        }
+
+
+        // --- Event Listeners ---
+        
+        startBtn.addEventListener('click', startReactionGame);
+        restartBtn.addEventListener('click', resetApp);
+        reactionBtn.addEventListener('click', checkReactionHit);
+        
+        // --- 404 Terminal Listener ---
+        terminalInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = terminalInput.value.trim().toLowerCase();
+                if (command === 'run v0id_protocol.exe') {
+                    startBootSequence();
+                } else {
+                    // Handle incorrect 404 terminal commands
+                    terminalMessage.textContent = "[ERROR] :: UNKNOWN_COMMAND";
+                    terminalInput.value = "";
+                }
+            }
+        });
+
+
+        // Aim Tester Listeners
+        aimTarget.addEventListener('click', (e) => {
+            e.stopPropagation();
+            aimScore++;
+            aimScoreDisplay.textContent = aimScore;
+            
+            if (aimScore >= AIM_HITS_REQUIRED) {
+                clearInterval(aimTimerLoop);
+                aimTarget.onclick = null;
+                aimGrid.onclick = null;
+                breachStats.aimScore = aimScore;
+                breachStats.aimTime = (AIM_TIME_LIMIT - aimTimeLeft) / 1000;
+                aimMessage.textContent = "[DATA_PACKET_SECURED]";
+                aimMessage.className = "text-lg neon-text-green h-6";
+                setTimeout(startTypingGame, 2000); // Proceed to Stage 6
+            } else {
+                moveAimTarget();
+            }
+        });
+        aimGrid.addEventListener('click', () => {
+            aimTimeLeft -= 500; // 0.5 second penalty
+            aimMessage.textContent = "[MISS] :: -0.5s";
+            aimMessage.className = "text-lg neon-text-red h-6";
+            setTimeout(() => aimMessage.textContent = "", 500);
+        });
+
+        typingInput.addEventListener('keyup', (e) => {
+            if (e.key === "Enter") checkTypingInput();
+        });
+
+        deobfuscationInput.addEventListener('keyup', (e) => {
+            if (e.key === "Enter") checkDeobfuscationInput();
+        });
+        
+        // Brute-Force Listener
+        bruteforceSubmitBtn.addEventListener('click', checkBruteForceGuess);
+
+        puzzleSubmitBtn.addEventListener('click', checkPuzzleKey);
+        puzzleInput.addEventListener('keyup', (e) => {
+            if (e.key === "Enter") checkPuzzleKey();
+        });
+
+        // Add dev bypass listener
+        document.addEventListener('keydown', (e) => {
+            if (e.altKey && e.key.toLowerCase() === 'w') {
+                e.preventDefault(); // Stop browser default action (e.g., closing tab)
+                devBypass();
+            }
+        });
+
+        // Add listeners for all choice buttons
+        document.querySelectorAll('.choice-button').forEach(button => {
+            button.addEventListener('click', () => {
+                handlePsycheChoice(button.dataset.choice);
+            });
+        });
+
+        // --- Initial Load ---
+        resetApp(); // Use resetApp to initialize everything
+
+    </script>
+</body>
+</html>
